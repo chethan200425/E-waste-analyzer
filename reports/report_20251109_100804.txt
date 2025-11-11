@@ -1,0 +1,12 @@
+E-Waste Analysis Report
+========================
+File: phone.jpg
+
+Useful Materials:
+- Gold
+- Plastic
+- Glass
+
+Hazardous Materials:
+- Lead
+- Brominated Flame Retardants

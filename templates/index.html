@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMRIT E-Waste Analyzer</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>CMR Institute of Technology</h1>
+    <p class="subtitle">Department of Computer Science & Engineering</p>
+    <h2 class="project-title">♻️ E-Waste Analysis System</h2>
+  </header>
+
+  <main class="container">
+    <div class="upload-card">
+      <h3>Upload E-Waste Image for Analysis</h3>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" id="fileInput" accept="image/*" required>
+        <div class="preview-box">
+          <img id="previewImage" src="" alt="Preview will appear here" />
+        </div>
+        <button type="submit">Analyze E-Waste</button>
+      </form>
+    </div>
+
+    {% if useful %}
+    <div class="result-card">
+      <h3>AI Analysis Result</h3>
+
+      <div class="result-section">
+        <h4>✅ Useful Materials</h4>
+        <ul>
+          {% for u in useful %}
+          <li>{{ u }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="result-section">
+        <h4>⚠️ Hazardous Materials</h4>
+        <ul>
+          {% for h in hazard %}
+          <li>{{ h }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <a class="download-btn" href="/download/{{ report }}">⬇️ Download Report</a>
+    </div>
+    {% endif %}
+  </main>
+
+  <footer>
+    <p>Developed by <b>Chethan Kumar V</b> | Guided by CMRIT Faculty | © 2025 CMRIT Bengaluru</p>
+  </footer>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const previewImage = document.getElementById('previewImage');
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (file) {
+        previewImage.src = URL.createObjectURL(file);
+        previewImage.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
